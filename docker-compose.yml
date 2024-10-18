@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  fastapi-dev:
+    image: fa_app:${TAG:-latest}
+    build:
+      context: .
+    working_dir: /FA
+    volumes:
+      - .:/FA
+    restart: on-failure
+    ports:
+      - "${HTTP_PORT:-8001}:8001"
+    environment:
+      - PORT=8001
+      - PYTHONPATH = / # fixing python path when changing the working directory
+      - WATCHFILES_FORCE_POLLING=true # This is needed for hot reloading to work on windows  (fix watch feature) for python
+      - WATCHPACK_POLLING=true # This is needed for hot reloading to work on windows  (fix watch feature)
+      - CHOKIDAR_USEPOLLING=true # This is needed for hot reloading to work on windows (fix watch feature)
+      - FORCE_COLOR="1" # This forces colors in the terminal + fix chalk colors
+      - PYTHONUNBUFFERED=1 # This stops Python from buffering stdout so that you can see logs in real-time
