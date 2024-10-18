@@ -17,5 +17,5 @@ app.include_router(items_router)
 
 @app.get('/')
 async def hi():
-    return {'data': 'Hi6'}
+    return {'data': 'Hi9'}
 

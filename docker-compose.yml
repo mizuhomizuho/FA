@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  fastapi-dev:
+  fa_app:
     image: fa_app:${TAG:-latest}
     build:
       context: .

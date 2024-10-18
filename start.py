@@ -24,3 +24,5 @@
 # docker run -p 80:80 -v C:\Users\xxxx0\PycharmProjects\FA:/FA:ro fa_app
 
 # python -m venv .venv
+
+# docker-compose up
