@@ -1,17 +1,21 @@
-FROM python:3.12-slim
+FROM python:3.12
 
-RUN mkdir /FA
+RUN mkdir /FA9
 
-WORKDIR /FA
+WORKDIR /FA9
 
 COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-# Make port 8001 available to the world outside this container
-EXPOSE 8001:8001
-
-# Define environment variable
-ENV PYTHONUNBUFFERED=1
-
-CMD ["uvicorn", "main:app", "--port", "8001", "--host", "0.0.0.0", "--reload"]
+#RUN pip install -r requirements.txt \
+#    && apt-get update \
+#    && apt-get install -y openssh-server \
+#    && mkdir /var/run/sshd \
+#    && echo 'root:root123' | chpasswd \
+#    && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+#EXPOSE 22
+#HEALTHCHECK --interval=1s --timeout=3s \
+#    CMD ["/usr/sbin/sshd", "-D"]
+#EXPOSE 8005:8005
+#CMD ["uvicorn", "main:app", "--port", "8005", "--host", "0.0.0.0", "--reload"]

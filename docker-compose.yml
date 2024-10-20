@@ -1,18 +1,17 @@
-version: "3.9"
-
 services:
-  fa_app:
-    image: fa_app:${TAG:-latest}
+  web:
+#    entrypoint: sh start.sh
+#    command: uvicorn main:app --port 8009 --host 0.0.0.0 --reload
     build:
       context: .
-    working_dir: /FA
     volumes:
-      - .:/FA
-    restart: on-failure
+      - .:/FA9
     ports:
-      - "${HTTP_PORT:-8001}:8001"
+      - '8009:8009'
+    working_dir: /FA9
+    privileged: true
+    restart: on-failure
     environment:
-      - PORT=8001
       - PYTHONPATH = / # fixing python path when changing the working directory
       - WATCHFILES_FORCE_POLLING=true # This is needed for hot reloading to work on windows  (fix watch feature) for python
       - WATCHPACK_POLLING=true # This is needed for hot reloading to work on windows  (fix watch feature)

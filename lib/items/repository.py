@@ -1,7 +1,8 @@
 from sqlalchemy import select
-from db import new_sess, ItemsTable
-from schemes import ItemBase, Item
+from sqlalchemy.util import await_only
 
+from lib.items.schemes import ItemBase, Item
+from lib.tools.db import new_sess, ItemsTable
 
 class ItemsRepo:
 

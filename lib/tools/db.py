@@ -17,10 +17,12 @@ class ItemsTable(ModelBase):
     sort: Mapped[int]
     desc: Mapped[str | None]
 
-async def create_db():
-    async with engine.begin() as conn:
-        await conn.run_sync(ModelBase.metadata.create_all)
+class DbTools:
 
-async def drop_db():
-    async with engine.begin() as conn:
-        await conn.run_sync(ModelBase.metadata.drop_all)
+    async def create_db(self):
+        async with engine.begin() as conn:
+            await conn.run_sync(ModelBase.metadata.create_all)
+
+    async def drop_db(self):
+        async with engine.begin() as conn:
+            await conn.run_sync(ModelBase.metadata.drop_all)

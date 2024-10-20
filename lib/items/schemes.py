@@ -4,9 +4,6 @@ class ItemBase(BaseModel):
     name: str
     sort: int
     desc: str | None = None
-    # def __init__(self):
-    #     super().__init__()
-    #     pass
 
 class Item(ItemBase):
     id: int
