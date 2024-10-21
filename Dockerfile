@@ -1,12 +1,12 @@
 FROM python:3.12
 
-RUN mkdir /FA9
+RUN mkdir /FA
 
-WORKDIR /FA9
+WORKDIR /FA
 
-COPY requirements.txt requirements.txt
+COPY requirements_linux.txt requirements_linux.txt
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements_linux.txt
 
 #RUN pip install -r requirements.txt \
 #    && apt-get update \

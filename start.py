@@ -25,6 +25,13 @@ if __name__ == '__main__':
 # docker run -p 80:80 -v C:\Users\xxxx0\PycharmProjects\FA:/FA:ro fa_app
 # docker container exec -u 0 -it fa-fa_app-1 bash
 
+# python -m pip freeze > requirements_linux.txt
+# python -m pip install -r requirements_linux.txt
+# python -m pip freeze > requirements_win.txt
+# python -m pip install -r requirements_win.txt
+
 # alembic - A database migration tool for SQLAlchemy.
 # psycopg2 - Python-PostgreSQL Database Adapter (linux: psycopg2-binary)
 
+# alembic init migrations
+# alembic revision --autogenerate -m "DB create"

@@ -2,15 +2,16 @@ services:
 
   fa_python:
 #    entrypoint: sh start.sh
-#    command: uvicorn main:app --port 8009 --host 0.0.0.0 --reload
+#    command: /bin/sh -c "while true; do sleep 30; done"
+#    command: uvicorn main:app --port 8009 --host 0.0.0.0
     container_name: fa_python
     build:
       context: .
     volumes:
-      - .:/FA9
+      - .:/FA
     ports:
       - '8009:8009'
-    working_dir: /FA9
+    working_dir: /FA
     privileged: true
     restart: on-failure
     depends_on:
@@ -28,7 +29,12 @@ services:
     ports:
       - '8010:5432'
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=fa_postgres
+      - POSTGRES_USER=fa_postgres
+      - POSTGRES_PASSWORD=fa_postgres
     container_name: fa_postgres
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+
+volumes:
+  postgresql_data: null
