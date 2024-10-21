@@ -1,8 +1,7 @@
 from sqlalchemy import select
-from sqlalchemy.util import await_only
-
+from lib.items.model import ItemsTable
 from lib.items.schemes import ItemBase, Item
-from lib.tools.db import new_sess, ItemsTable
+from lib.tools.db import new_sess
 
 class ItemsRepo:
 
@@ -15,8 +14,18 @@ class ItemsRepo:
             await sess.commit()
             return item_el.id
 
-    async def list(self) -> list[Item]:
+    async def list(self, limit: int, offset: int) -> list[Item]:
+
+        # xxx = [1,2,34,5,5668,78,67,56,7]
+        # x1 = 2
+        # x2 = 4
+        # print(xxx[x1:][:x2])
+
+        from starlette import status
+        print(status.HTTP_422_UNPROCESSABLE_ENTITY)
+        # ''  #
+
         async with new_sess() as sess:
             q = select(ItemsTable)
             res = await sess.execute(q)
-            return [Item.model_validate(_.__dict__) for _ in res.scalars().all()]
+            return [Item.model_validate(item.__dict__) for item in res.scalars().all()]

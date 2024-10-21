@@ -10,7 +10,7 @@ if __name__ == '__main__':
     )
 
 # python -m venv .venv
-# cd C:\Users\xxxx0\PycharmProjects\FA && .venv\Scripts\activate && uvicorn main:app --reload --port 8009
+# cd C:\Users\xxxx0\PycharmProjects\FA && venv\Scripts\activate && uvicorn main:app --reload --port 8009
 # Taskkill /IM uvicorn.exe /F
 # Taskkill /F /PID 11628
 # Get-Process -Id (Get-NetTCPConnection -LocalPort 30002).OwningProcess
@@ -24,3 +24,7 @@ if __name__ == '__main__':
 # docker run -p 80:80 fa_app
 # docker run -p 80:80 -v C:\Users\xxxx0\PycharmProjects\FA:/FA:ro fa_app
 # docker container exec -u 0 -it fa-fa_app-1 bash
+
+# alembic - A database migration tool for SQLAlchemy.
+# psycopg2 - Python-PostgreSQL Database Adapter (linux: psycopg2-binary)
+

@@ -1,7 +1,9 @@
 services:
-  web:
+
+  fa_python:
 #    entrypoint: sh start.sh
 #    command: uvicorn main:app --port 8009 --host 0.0.0.0 --reload
+    container_name: fa_python
     build:
       context: .
     volumes:
@@ -11,6 +13,8 @@ services:
     working_dir: /FA9
     privileged: true
     restart: on-failure
+    depends_on:
+      - fa_postgres
     environment:
       - PYTHONPATH = / # fixing python path when changing the working directory
       - WATCHFILES_FORCE_POLLING=true # This is needed for hot reloading to work on windows  (fix watch feature) for python
@@ -18,3 +22,13 @@ services:
       - CHOKIDAR_USEPOLLING=true # This is needed for hot reloading to work on windows (fix watch feature)
       - FORCE_COLOR="1" # This forces colors in the terminal + fix chalk colors
       - PYTHONUNBUFFERED=1 # This stops Python from buffering stdout so that you can see logs in real-time
+
+  fa_postgres:
+    image: postgres
+    ports:
+      - '8010:5432'
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    container_name: fa_postgres

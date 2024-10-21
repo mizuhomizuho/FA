@@ -10,7 +10,12 @@ async def add(item: Annotated[ItemBase, Depends()]) -> ItemId:
     inst = Lib('items/repository', 'ItemsRepo').get()
     return {'result': True, 'item_id': await inst().add(item)}
 
-@router.post('')
-async def list() -> dict[str, list[Item]]:
+@router.get('', response_model=dict[str, list[Item]])
+async def list(limit: int = 20, offset: int = 0) -> dict[str, list[Item]]:
     inst = Lib('items/repository', 'ItemsRepo').get()
-    return {'list': await inst().list()}
+    return {'list': await inst().list(limit, offset)}
+
+@router.get('/{id}')
+async def get(id: int) -> Item:
+    inst = Lib('items/repository', 'ItemsRepo').get()
+    return {'list': await inst().get(id)}
