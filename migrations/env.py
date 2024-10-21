@@ -6,7 +6,9 @@ from sqlalchemy import pool
 from alembic import context
 
 from config import DB_USER, DB_PASS, DB_HOST, DB_NAME, DB_PORT
-from lib.items2.model import metadata
+from lib.models import metadata
+
+# from lib.items2.model import metadata
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

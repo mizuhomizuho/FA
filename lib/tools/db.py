@@ -20,4 +20,4 @@ class DbTools:
 
     @staticmethod
     def now_utc():
-        return datetime.datetime.now(datetime.UTC)
+        return datetime.datetime.fromtimestamp(datetime.datetime.now(datetime.UTC).timestamp())

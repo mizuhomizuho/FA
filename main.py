@@ -1,12 +1,18 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from contextlib import asynccontextmanager
 from urllib.request import Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import ResponseValidationError
 from starlette import status
 from starlette.responses import JSONResponse
+from lib.auth.auth import auth_backend
+from lib.auth.db import User
+from lib.auth.manager import get_user_manager
+from lib.auth.schemas import UserRead, UserCreate
 from lib.items.router import router as items_router
 from lib.lib import Lib
+from fastapi_users import FastAPIUsers
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -16,6 +22,33 @@ async def lifespan(app: FastAPI):
     await inst.lifespan_end()
 
 app = FastAPI(lifespan=lifespan, title='FAProj')
+
+fastapi_users = FastAPIUsers[User, int](
+    get_user_manager,
+    [auth_backend],
+)
+
+app.include_router(
+    fastapi_users.get_auth_router(auth_backend),
+    prefix="/auth/jwt",
+    tags=["auth"],
+)
+
+app.include_router(
+    fastapi_users.get_register_router(UserRead, UserCreate),
+    prefix="/auth",
+    tags=["auth"],
+)
+
+current_user = fastapi_users.current_user()
+
+@app.get("/protected-route")
+def protected_route(user: User = Depends(current_user)):
+    return f"Hello, {user.username}"
+
+@app.get("/unprotected-route")
+def unprotected_route():
+    return f"Hello, anonym"
 
 @app.exception_handler(ResponseValidationError)
 async def validation_exception_handler(request: Request, exc: ResponseValidationError):
