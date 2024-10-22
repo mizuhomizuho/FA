@@ -1,9 +1,13 @@
+import pathlib
+import sys
 import uvicorn
+
+sys.path.append(f'{pathlib.Path(__file__).parent.resolve()}/src')
 
 if __name__ == '__main__':
 
     uvicorn.run(
-        'main:app',
+        'src.main:app',
         host='0.0.0.0',
         port=8009,
         # reload=True,
@@ -25,17 +29,23 @@ if __name__ == '__main__':
 # docker run -p 80:80 -v C:\Users\xxxx0\PycharmProjects\FA:/FA:ro fa_app
 # docker container exec -u 0 -it fa_python bash
 
-# python -m pip freeze > requirements/linux.txt
-# python -m pip install -r requirements/linux.txt
-# python -m pip freeze > requirements/windows.txt
-# python -m pip install -r requirements/windows.txt
+# python -m pip freeze > requirements/base.txt
+# python -m pip install -r requirements/base.txt
 
 # alembic - A database migration tool for SQLAlchemy.
 # psycopg2 - Python-PostgreSQL Database Adapter (linux: psycopg2-binary)
 
 # alembic init migrations
-# alembic revision --autogenerate -m "fastapi_users"
-# alembic upgrade 0a361888ba66
+# alembic revision --autogenerate -m "20241022_part_2"
+# alembic upgrade c2c2ce078aea
 
 # asyncpg - An asyncio PostgreSQL driver
 # fastapi-users - Ready-to-use and customizable users management for FastAPI
+
+'''
+redis
+keys *
+set xxx 123
+get xxx
+del xxx
+'''

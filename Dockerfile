@@ -5,9 +5,9 @@ RUN mkdir /FA/requirements
 
 WORKDIR /FA
 
-COPY requirements/linux.txt requirements/linux.txt
+COPY requirements/base.txt requirements/base.txt
 
-RUN pip install -r requirements/linux.txt
+RUN pip install -r requirements/base.txt
 
 #RUN pip install -r requirements.txt \
 #    && apt-get update \

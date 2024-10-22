@@ -1,7 +1,6 @@
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Column, Integer, String, ForeignKey, TIMESTAMP, JSON, Table
+from sqlalchemy import Column, Integer, String, ForeignKey, TIMESTAMP, JSON, Table, MetaData
 from src.tools.db import Tools
-from src.tools.metadata import metadata
 
 class ModelBase(DeclarativeBase):
     pass
@@ -13,7 +12,9 @@ class ItemsTable(ModelBase):
     sort: Mapped[int]
     desc: Mapped[str | None]
 
-items2_table = Table(
+metadata = MetaData()
+
+items2 = Table(
     'items2',
     metadata,
     Column('id', Integer, primary_key=True),
@@ -22,7 +23,7 @@ items2_table = Table(
     Column('date', TIMESTAMP, default=Tools.now_utc),
 )
 
-items3_table = Table(
+items3 = Table(
     'items3',
     metadata,
     Column('id', Integer, primary_key=True),

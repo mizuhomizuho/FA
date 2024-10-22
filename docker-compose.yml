@@ -23,6 +23,12 @@ services:
       - PYTHONUNBUFFERED=1 # This stops Python from buffering stdout so that you can see logs in real-time
     depends_on:
       - fa_postgres
+      - fa_redis
+
+  fa_redis:
+    image: redis
+    ports:
+      - '8011:6379'
 
   fa_postgres:
     image: postgres
