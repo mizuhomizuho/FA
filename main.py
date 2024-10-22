@@ -5,14 +5,13 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import ResponseValidationError
 from starlette import status
 from starlette.responses import JSONResponse
-from lib.auth.auth import auth_backend
-from lib.auth.db import User
-from lib.auth.manager import get_user_manager
-from lib.auth.schemas import UserRead, UserCreate
-from lib.items.router import router as items_router
-from lib.lib import Lib
+from src.auth.auth import auth_backend
+from src.auth.db import User
+from src.auth.manager import get_user_manager
+from src.auth.schemas import UserRead, UserCreate
+from src.items.router import router as items_router
+from src.lib import Lib
 from fastapi_users import FastAPIUsers
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

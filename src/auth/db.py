@@ -6,8 +6,8 @@ from sqlalchemy import Integer, Column, String, TIMESTAMP, ForeignKey, Boolean
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME
-from lib.models import role
-from lib.tools.db import DbTools
+from src.auth.models import role_table
+from src.tools.db import Tools
 
 DATABASE_URL = f'postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{ DB_NAME}'
 
@@ -19,8 +19,8 @@ class User(SQLAlchemyBaseUserTable[int], Base):
     id = Column(Integer, primary_key=True)
     email = Column(String, nullable=False)
     username = Column(String, nullable=False)
-    registered_at = Column(TIMESTAMP, default=DbTools.now_utc)
-    role_id = Column(Integer, ForeignKey(role.c.id))
+    registered_at = Column(TIMESTAMP, default=Tools.now_utc)
+    role_id = Column(Integer, ForeignKey(role_table.c.id))
     hashed_password: str = Column(String(length=1024), nullable=False)
     is_active: bool = Column(Boolean, default=True, nullable=False)
     is_superuser: bool = Column(Boolean, default=False, nullable=False)

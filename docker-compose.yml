@@ -14,8 +14,6 @@ services:
     working_dir: /FA
     privileged: true
     restart: on-failure
-    depends_on:
-      - fa_postgres
     environment:
       - PYTHONPATH = / # fixing python path when changing the working directory
       - WATCHFILES_FORCE_POLLING=true # This is needed for hot reloading to work on windows  (fix watch feature) for python
@@ -23,6 +21,8 @@ services:
       - CHOKIDAR_USEPOLLING=true # This is needed for hot reloading to work on windows (fix watch feature)
       - FORCE_COLOR="1" # This forces colors in the terminal + fix chalk colors
       - PYTHONUNBUFFERED=1 # This stops Python from buffering stdout so that you can see logs in real-time
+    depends_on:
+      - fa_postgres
 
   fa_postgres:
     image: postgres

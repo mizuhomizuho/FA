@@ -1,7 +1,7 @@
 from sqlalchemy import select
-from lib.items.model import ItemsTable
-from lib.items.schemes import ItemBase, Item
-from lib.tools.db import new_sess
+from src.items.models import ItemsTable
+from src.items.schemes import ItemBase, Item
+from src.tools.db import new_sess
 
 class ItemsRepo:
 

@@ -1,10 +1,10 @@
-from lib.lib import Lib
+from src.lib import Lib
 
 class Tools:
 
     async def lifespan(self) -> None:
         pass
-        # inst = Lib('tools/db', 'DbTools').get()()
+        # inst = Lib('items/tools', 'Tools').get()()
         # print('Create db')
         # await inst.create_db()
         # print('Drop db')

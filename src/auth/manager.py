@@ -4,7 +4,7 @@ from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, UUIDIDMixin, IntegerIDMixin, models, schemas, exceptions
 
 from config import AUTH_JWT_SECRET_2
-from lib.auth.db import User, get_user_db
+from src.auth.db import User, get_user_db
 
 SECRET = AUTH_JWT_SECRET_2
 

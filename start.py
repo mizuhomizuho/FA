@@ -23,12 +23,12 @@ if __name__ == '__main__':
 # docker-compose up
 # docker run -p 80:80 fa_app
 # docker run -p 80:80 -v C:\Users\xxxx0\PycharmProjects\FA:/FA:ro fa_app
-# docker container exec -u 0 -it fa-fa_app-1 bash
+# docker container exec -u 0 -it fa_python bash
 
-# python -m pip freeze > requirements_linux.txt
-# python -m pip install -r requirements_linux.txt
-# python -m pip freeze > requirements.txt
-# python -m pip install -r requirements.txt
+# python -m pip freeze > requirements/linux.txt
+# python -m pip install -r requirements/linux.txt
+# python -m pip freeze > requirements/windows.txt
+# python -m pip install -r requirements/windows.txt
 
 # alembic - A database migration tool for SQLAlchemy.
 # psycopg2 - Python-PostgreSQL Database Adapter (linux: psycopg2-binary)
@@ -37,4 +37,5 @@ if __name__ == '__main__':
 # alembic revision --autogenerate -m "fastapi_users"
 # alembic upgrade 0a361888ba66
 
-# pip install asyncpg - An asyncio PostgreSQL driver
+# asyncpg - An asyncio PostgreSQL driver
+# fastapi-users - Ready-to-use and customizable users management for FastAPI

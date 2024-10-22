@@ -1,7 +1,7 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends
-from lib.items.schemes import ItemBase, ItemId, Item
-from lib.lib import Lib
+from src.items.schemes import ItemBase, ItemId, Item
+from src.lib import Lib
 
 router = APIRouter(prefix='/items', tags=['Elements'])
 

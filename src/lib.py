@@ -14,7 +14,7 @@ class Lib:
 
     def get(self) -> Callable:
 
-        with open(f'lib/{self.__path}.py', 'r') as f:
+        with open(f'src/{self.__path}.py', 'r') as f:
             exec(f'def lib_wrapper_fns(lib_wrapper_inst):\n\t{'\n\t'.join(f.read().split('\n'))}'
                 f'\n\tlib_wrapper_inst.inst = {self.__class}\nlib_wrapper_fns(self)')
 
