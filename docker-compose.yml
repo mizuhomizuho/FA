@@ -2,7 +2,7 @@ services:
 
   fa_python:
 #    entrypoint: sh start.sh
-#    command: /bin/sh -c "while true; do sleep 30; done"
+    command: /bin/sh -c "while true; do sleep 30; done"
 #    command: uvicorn main:app --port 8009 --host 0.0.0.0
     container_name: fa_python
     build:
@@ -10,7 +10,8 @@ services:
     volumes:
       - .:/FA
     ports:
-      - '8009:8009'
+      - '8009:8009' # uvicorn
+      - '8012:5555' # flower
     working_dir: /FA
     privileged: true
     restart: on-failure
@@ -22,11 +23,13 @@ services:
       - FORCE_COLOR="1" # This forces colors in the terminal + fix chalk colors
       - PYTHONUNBUFFERED=1 # This stops Python from buffering stdout so that you can see logs in real-time
     depends_on:
+      - fa_postgres_test
       - fa_postgres
       - fa_redis
 
   fa_redis:
     image: redis
+    container_name: fa_redis
     ports:
       - '8011:6379'
 
@@ -42,5 +45,18 @@ services:
     volumes:
       - postgresql_data:/var/lib/postgresql/data
 
+  fa_postgres_test:
+    image: postgres
+    ports:
+      - '8013:5432'
+    environment:
+      - POSTGRES_DB=fa_postgres_test
+      - POSTGRES_USER=fa_postgres_test
+      - POSTGRES_PASSWORD=fa_postgres_test
+    container_name: fa_postgres_test
+    volumes:
+      - postgresql_data_test:/var/lib/postgresql/data
+
 volumes:
   postgresql_data: null
+  postgresql_data_test: null
