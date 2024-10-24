@@ -2,7 +2,6 @@ from typing import Optional
 
 from fastapi_users import schemas
 
-
 class UserRead(schemas.BaseUser[int]):
     id: int
     email: str
@@ -12,9 +11,8 @@ class UserRead(schemas.BaseUser[int]):
     is_superuser: bool = False
     is_verified: bool = False
 
-    class Config:
-        orm_mode = True
-
+    class ConfigDict:
+        from_attributes = True
 
 class UserCreate(schemas.BaseUserCreate):
     username: str

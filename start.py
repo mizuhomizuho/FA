@@ -45,8 +45,8 @@ psycopg2 - Python-PostgreSQL Database Adapter (linux: psycopg2-binary)
 
 '''
 alembic init migrations
-alembic revision --autogenerate -m "20241022_part_2"
-alembic upgrade c2c2ce078aea
+alembic revision --autogenerate -m "meow"
+alembic upgrade 7e37adc886a5
 '''
 
 '''
@@ -68,4 +68,9 @@ flower
 celery -A src.tasks.tasks:celery worker --loglevel=INFO
 celery -A src.tasks.tasks:celery worker --loglevel=INFO --pool=solo (для windows)
 celery -A src.tasks.tasks:celery flower
+'''
+
+'''
+pytest -v ./tests
+pytest -v -s ./tests (для print)
 '''

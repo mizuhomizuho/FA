@@ -1,0 +1,28 @@
+from src.auth.models import role
+from sqlalchemy import insert, select
+from conftest import client, async_session_maker
+
+# @paytest.mark.asyncio (если asyncio_mode="strict")
+async def test_add_role():
+    async with async_session_maker() as session:
+        stmt = insert(role).values(id=1, name="admin", permissions=None)
+        await session.execute(stmt)
+        await session.commit()
+
+        query = select(role)
+        result = await session.execute(query)
+        assert result.all() == [(1, 'admin', None)], "Роль не добавилась"
+
+def test_register():
+
+    response = client.post("/auth/register", json={
+        "email": "string1",
+        "password": "string1",
+        "is_active": True,
+        "is_superuser": False,
+        "is_verified": False,
+        "username": "string1",
+        "role_id": 1
+    })
+
+    assert response.status_code == 201
