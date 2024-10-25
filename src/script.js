@@ -4,6 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     fetch('http://localhost:8009/')
     .then(response => response.json())
-    .catch(error => success(false))
+    .catch(error => success(error))
     .then(data => success(data))
 })

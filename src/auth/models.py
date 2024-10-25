@@ -11,21 +11,26 @@ role = Table(
     Column("permissions", JSON),
 )
 
-user = Table(
-    "user",
-    metadata,
-    Column("id", Integer, primary_key=True),
-    Column("email", String, nullable=False),
-    Column("username", String, nullable=False),
-    Column("registered_at", TIMESTAMP, default=Tools.now_utc),
-    Column("role_id", Integer, ForeignKey(role.c.id)),
-    Column("hashed_password", String, nullable=False),
-    Column("is_active", Boolean, default=True, nullable=False),
-    Column("is_superuser", Boolean, default=False, nullable=False),
-    Column("is_verified", Boolean, default=False, nullable=False),
-)
+# # Императивный стиль
+# user = Table(
+#     "user",
+#     metadata,
+#     Column("id", Integer, primary_key=True),
+#     Column("email", String, nullable=False),
+#     Column("username", String, nullable=False),
+#     Column("registered_at", TIMESTAMP, default=Tools.now_utc),
+#     Column("role_id", Integer, ForeignKey(role.c.id)),
+#     Column("hashed_password", String, nullable=False),
+#     Column("is_active", Boolean, default=True, nullable=False),
+#     Column("is_superuser", Boolean, default=False, nullable=False),
+#     Column("is_verified", Boolean, default=False, nullable=False),
+# )
 
+# Декоративный стиль
 class User(SQLAlchemyBaseUserTable[int], Base):
+
+    __tablename__ = 'user'
+
     id = Column(Integer, primary_key=True)
     email = Column(String, nullable=False)
     username = Column(String, nullable=False)
