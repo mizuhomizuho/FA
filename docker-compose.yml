@@ -11,6 +11,7 @@ services:
       - .:/FA
     ports:
       - '8009:8009' # uvicorn
+      - '8014:8010' # uvicorn (site)
       - '8012:5555' # flower
     working_dir: /FA
     privileged: true

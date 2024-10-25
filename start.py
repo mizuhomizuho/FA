@@ -1,8 +1,4 @@
-import pathlib
-import sys
 import uvicorn
-
-sys.path.append(f'{pathlib.Path(__file__).parent.resolve()}/src')
 
 if __name__ == '__main__':
 
@@ -12,6 +8,21 @@ if __name__ == '__main__':
         port=8009,
         # reload=True,
     )
+
+# import pathlib
+# import subprocess
+# import sys
+#
+# if __name__ == '__main__':
+#
+#     proc_api = subprocess.Popen(f'python {pathlib.Path(__file__).parent.resolve()}/start_api.py',
+#         shell=True, stdin=subprocess.PIPE, stdout=sys.stdout, stderr=sys.stdout)
+#
+#     proc_site = subprocess.Popen(f'python {pathlib.Path(__file__).parent.resolve()}/start_site.py',
+#         shell=True, stdin=subprocess.PIPE, stdout=sys.stdout, stderr=sys.stdout)
+#
+#     while True:
+#         pass
 
 r'''
 python -m venv .venv
