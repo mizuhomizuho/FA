@@ -19,3 +19,4 @@ RUN pip install -r requirements.txt
 #    CMD ["/usr/sbin/sshd", "-D"]
 #EXPOSE 8005:8005
 #CMD ["uvicorn", "main:app", "--port", "8005", "--host", "0.0.0.0", "--reload"]
+#CMD gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000

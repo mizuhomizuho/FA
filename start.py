@@ -39,8 +39,9 @@ r'''
 docker system prune
 docker build . --tag fa_app
 docker-compose up
-docker run -p 80:80 fa_app
+docker run -d -p 80:80 fa_app
 docker run -p 80:80 -v C:\Users\xxxx0\PycharmProjects\FA:/FA:ro fa_app
+docker logs fa_app
 docker container exec -u 0 -it fa_python bash
 '''
 
