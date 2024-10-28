@@ -46,11 +46,6 @@ docker container exec -u 0 -it fa_python bash
 '''
 
 '''
-python -m pip freeze > requirements/base.txt
-python -m pip install -r requirements/base.txt
-'''
-
-'''
 alembic - A database migration tool for SQLAlchemy.
 psycopg2 - Python-PostgreSQL Database Adapter (linux: psycopg2-binary)
 '''
