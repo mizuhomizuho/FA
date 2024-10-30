@@ -51,7 +51,7 @@ psycopg2 - Python-PostgreSQL Database Adapter (linux: psycopg2-binary)
 '''
 
 '''
-alembic init migrations
+alembic init migrations (cd src && alembic init alembic)
 alembic revision --autogenerate -m "meow"
 alembic upgrade 482575c8ac4c
 alembic upgrade head
